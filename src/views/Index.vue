@@ -11,12 +11,32 @@
 <script>
 import HeaderNav from '../components/Header'
 import LeftNav from '../components/LeftNav'
+import LocalStorageData from '../assets/js/loaclStorageData'
+
+const localStorageData = new LocalStorageData('ananta')
 
 export default {
   data () {
     return {}
   },
-  methods: {},
+
+  created () {
+    this.verifyToken()
+  },
+  methods: {
+    // 验证是否过期
+    verifyToken () {
+      this.$http.get('/api/users/current')
+        .then(res => {
+          if (!res.data) {
+            localStorageData.remove('ananta')
+          }
+        })
+        .catch(err => {
+          localStorageData.remove('ananta')
+        })
+    }
+  },
   computed: {},
   components: {
     HeaderNav,

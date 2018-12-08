@@ -15,7 +15,7 @@
               <p class="user-mes-text">{{mes.message}}</p>
             </div>
             <div class="user-edit">
-              <button class="btn-look" @click="changeMes(mes._id)">{{mes.isLook == 0 ? '未确认' : '已确认'}}</button>
+              <button class="btn-look" @click="changeMes(mes._id, mes.isLook)">{{mes.isLook == 0 ? '未确认' : '已确认'}}</button>
               <button class="btn-del" @click="delUserMes(mes._id)">删除</button>
             </div>
           </li>
@@ -79,8 +79,8 @@ export default {
     },
 
     // 改变状态
-    changeMes (id) {
-      if (this.user.identity !== '0') {
+    changeMes (id, isLook) {
+      if (this.user.identity === '1' && isLook === 0) {
         this.$http.get('/api/usermes/lookmes', {
           params: {
             id: id
@@ -92,14 +92,14 @@ export default {
       } else {
         this.$message({
           type: 'warning',
-          message: '对不起，只有管理员才能进行此操作'
+          message: this.user.identity === '1' ? '您已经确认过此消息' : '对不起，只有管理员才能进行此操作'
         });
         return
       }
     },
 
     delUserMes (id) {
-      if (this.user.identity !== '0') {
+      if (this.user.identity === '1') {
         this.$http.delete(`/api/usermes/delete/${id}`)
           .then(res => {
             this.getUserMes()
@@ -112,11 +112,6 @@ export default {
         });
         return
       }
-    }
-  },
-  filters: {
-    getDate (value) {
-      return new Date(Date.parse(value)).toLocaleString();
     }
   },
   computed: {},
@@ -218,8 +213,8 @@ export default {
 }
 
 .btn-look, .btn-del, .btn-add {
-  width: 80px;
-  height: 35px;
+  width: 70px;
+  height: 30px;
   font-size: 16px;
   color: #fff;
   border-radius: 5px;
@@ -245,7 +240,7 @@ export default {
 .btn-add {
   background: #fff;
   float: right;
-  margin: 7px 78px 0 0;
+  margin: 9px 88px 0 0;
   color: #5f5f5f;
   font-weight: 700;
 }

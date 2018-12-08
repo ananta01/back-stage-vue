@@ -321,11 +321,6 @@ export default {
       }
     }
   },
-  filters: {
-    moneyToFixed (value) {
-      return parseFloat(value).toFixed(2);
-    }
-  },
   computed: {},
   components: {}
 }

@@ -6,7 +6,6 @@ import Login from './views/Login'
 import NotFound from './views/NotFound'
 import Home from './views/Home'
 import UserInfo from './views/UserInfo'
-import UserFile from './views/UserFile'
 import ElectricitySearch from './views/ElectricitySearch'
 import ElectricityInfo from './views/ElectricityInfo'
 import UpdateEle from './components/UpdateEle'
@@ -60,11 +59,6 @@ const router =  new Router({
           path: '/usermes',
           name: 'UserMes',
           component: UserMes
-        },
-        {
-          path: '/userfile',
-          name: 'userFile',
-          component: UserFile
         },
         {
           path: '/notice',

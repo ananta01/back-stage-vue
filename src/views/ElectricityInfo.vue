@@ -316,14 +316,6 @@ export default {
   },
   components: {
     Dialog
-  },
-  filters: {
-    getDate (value) {
-      return new Date(Date.parse(value)).toLocaleString();
-    },
-    moneyToFixed (value) {
-      return parseFloat(value).toFixed(2);
-    }
   }
 }
 </script>

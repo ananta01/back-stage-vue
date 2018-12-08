@@ -64,12 +64,6 @@
             children: [{ path: "electricityinfo", name: "订单详细" }]
           },
           {
-            icon: "el-icon-service",
-            name: "用户档案",
-            path: 'userfile',
-            children: [{ path: "userfile", name: "用户资料" }]
-          },
-          {
             icon: "el-icon-setting",
             name: "信息管理",
             path: 'user',
